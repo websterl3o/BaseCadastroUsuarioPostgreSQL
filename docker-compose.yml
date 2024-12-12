@@ -1,0 +1,51 @@
+services:
+    app:
+        build:
+            context: ./docker/php
+            dockerfile: Dockerfile
+        container_name: App_bcuPostgreSQL
+        working_dir: /var/www
+        volumes:
+            - ./src:/var/www
+            - ./docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
+            - ./docker/php/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+        ports:
+            - "5173:5173" # Porta do Vite
+            - "9003:9003" # Porta do Xdebug
+        networks:
+            - bcuPostgres
+        depends_on:
+            - db
+
+    webserver:
+        image: nginx:alpine
+        container_name: Webserver_bcuPostgreSQL
+        restart: unless-stopped
+        ports:
+            - "9898:80" # Porta do Nginx (porta de acesso)
+        volumes:
+            - ./src:/var/www
+            - ./docker/nginx/conf.d:/etc/nginx/conf.d
+        networks:
+            - bcuPostgres
+
+    db:
+        image: postgres:13
+        container_name: DB_bcuPostgreSQL
+        restart: unless-stopped
+        environment:
+            POSTGRES_DB: bcuPostgres
+            POSTGRES_USER: bcuPostgres
+            POSTGRES_PASSWORD: root
+        ports:
+            - "8858:5432"
+        volumes:
+            - dbdata:/var/lib/postgresql/data
+        networks:
+            - bcuPostgres
+
+networks:
+    bcuPostgres:
+
+volumes:
+    dbdata:
