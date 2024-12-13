@@ -55,7 +55,7 @@ watch(() => form.password_confirmation, (newPassword) => {
 
 <template>
     <GuestLayout>
-        <Head title="Register" />
+        <Head title="Registro" />
 
         <form @submit.prevent="submit">
             <div>

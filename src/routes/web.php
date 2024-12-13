@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', function () {
-    return Redirect::route('login');
+    return Redirect::route('register');
 });
 
 Route::get('/dashboard', function () {
