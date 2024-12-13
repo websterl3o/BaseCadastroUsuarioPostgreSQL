@@ -14,22 +14,22 @@ const form = useForm({
     password_confirmation: '',
 });
 
-const submit = () => {
-    if (form.password !== form.password_confirmation) {
-        form.errors.password_confirmation = 'Passwords do not match';
-        return;
-    }
-    form.post(route('register'), {
-        onFinish: () => {
-            form.reset('password', 'password_confirmation');
-        },
-    });
-};
-
 var nameMinLength = 3;
 var nameMaxLength = 50;
 var passwordMinLength = 6;
 var passwordMaxLength = 20;
+
+const submit = () => {
+    if (form.password !== form.password_confirmation) {
+        form.errors.password_confirmation = 'A senha e a confirmação de senha não coincidem.';
+        return;
+    }
+    form.post(route('register'), {
+        onError: (errors) => {
+            form.errors = errors;
+        },
+    });
+};
 
 watch(() => form.password_confirmation, (newPassword) => {
     console.log(form.password, form.password_confirmation);

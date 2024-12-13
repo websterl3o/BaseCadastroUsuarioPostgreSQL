@@ -42,9 +42,28 @@ class RegisteredUserRequest extends FormRequest
                 'required',
                 'confirmed',
                 'min:6',
-                'max:20',
-                Password::defaults()
+                'max:20'
             ],
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'O campo nome é obrigatório.',
+            'name.string' => 'O campo nome deve ser uma string.',
+            'name.min' => 'O campo nome deve ter no mínimo :min caracteres.',
+            'name.max' => 'O campo nome deve ter no máximo :max caracteres.',
+            'email.required' => 'O campo email é obrigatório.',
+            'email.string' => 'O campo email deve ser uma string.',
+            'email.lowercase' => 'O campo email deve ser uma string minúscula.',
+            'email.email' => 'O campo email deve ser um email válido.',
+            'email.max' => 'O campo email deve ter no máximo :max caracteres.',
+            'email.unique' => 'O campo email já está em uso.',
+            'password.required' => 'O campo senha é obrigatório.',
+            'password.confirmed' => 'O campo senha não confere com a confirmação.',
+            'password.min' => 'O campo senha deve ter no mínimo :min caracteres.',
+            'password.max' => 'O campo senha deve ter no máximo :max caracteres.',
         ];
     }
 }
