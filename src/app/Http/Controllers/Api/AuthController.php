@@ -21,8 +21,8 @@ class AuthController
         $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json([
-            'access_token' => $token,
-            'token_type' => 'Bearer'
+            'access_token' => "Bearer $token",
+            'user' => $user
         ], Response::HTTP_OK);
     }
 
@@ -32,6 +32,6 @@ class AuthController
 
         return response()->json([
             'message' => 'Logout realizado com sucesso.'
-        ]);
+        ], Response::HTTP_OK);
     }
 }

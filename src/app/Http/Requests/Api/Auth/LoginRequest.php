@@ -34,7 +34,7 @@ class LoginRequest extends FormRequest
             ],
             'password' => [
                 'required',
-                'string'
+                'string',
             ],
         ];
     }
@@ -88,5 +88,16 @@ class LoginRequest extends FormRequest
     public function throttleKey(): string
     {
         return Str::transliterate(Str::lower($this->string('email')).'|'.$this->ip());
+    }
+
+    public function messages(): array
+    {
+        return [
+            'email.required' => 'O campo e-mail é obrigatório.',
+            'email.string' => 'O campo e-mail deve ser uma string.',
+            'email.email' => 'O campo e-mail deve ser um endereço de e-mail válido.',
+            'password.required' => 'O campo senha é obrigatório.',
+            'password.string' => 'O campo senha deve ser uma string.',
+        ];
     }
 }

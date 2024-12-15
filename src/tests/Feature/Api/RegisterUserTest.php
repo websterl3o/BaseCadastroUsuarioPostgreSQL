@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Api;
+namespace Tests\Feature\Api;
 
 use Tests\TestCase;
 use App\Models\User;
@@ -14,7 +14,7 @@ class RegisterUserTest extends TestCase
     use RefreshDatabase;
 
     #[Test]
-    #[Group('register_user')]
+    #[Group('api_register_user')]
     #[Group('api')]
     #[TestDox('Try register user with name less than 2 characters')]
     public function test_register_user_with_name_less_than_2_characters()
@@ -28,11 +28,18 @@ class RegisterUserTest extends TestCase
 
         $response->assertStatus(422);
         $response->assertJsonValidationErrors('name');
-        $this->assertEquals('O campo nome deve ter no mínimo 3 caracteres.', $response->json('errors.name.0'));
+        $response->assertJson([
+            'message' => 'O campo nome deve ter no mínimo 3 caracteres.',
+            'errors' => [
+                'name' => [
+                    'O campo nome deve ter no mínimo 3 caracteres.',
+                ]
+            ]
+        ]);
     }
 
     #[Test]
-    #[Group('register_user')]
+    #[Group('api_register_user')]
     #[Group('api')]
     #[TestDox('Try register user with name more than 50 characters')]
     public function test_register_user_with_name_more_than_50_characters()
@@ -46,11 +53,18 @@ class RegisterUserTest extends TestCase
 
         $response->assertStatus(422);
         $response->assertJsonValidationErrors('name');
-        $this->assertEquals('O campo nome deve ter no máximo 50 caracteres.', $response->json('errors.name.0'));
+        $response->assertJson([
+            'message' => 'O campo nome deve ter no máximo 50 caracteres.',
+            'errors' => [
+                'name' => [
+                    'O campo nome deve ter no máximo 50 caracteres.',
+                ]
+            ]
+        ]);
     }
 
     #[Test]
-    #[Group('register_user')]
+    #[Group('api_register_user')]
     #[Group('api')]
     #[TestDox('Try register user with invalid email address')]
     public function test_register_user_with_invalid_email_address()
@@ -64,11 +78,18 @@ class RegisterUserTest extends TestCase
 
         $response->assertStatus(422);
         $response->assertJsonValidationErrors('email');
-        $this->assertEquals('O campo e-mail deve ser um endereço de e-mail válido.', $response->json('errors.email.0'));
+        $response->assertJson([
+            'message' => 'O campo e-mail deve ser um endereço de e-mail válido.',
+            'errors' => [
+                'email' => [
+                    'O campo e-mail deve ser um endereço de e-mail válido.',
+                ]
+            ]
+        ]);
     }
 
     #[Test]
-    #[Group('register_user')]
+    #[Group('api_register_user')]
     #[Group('api')]
     #[TestDox('Try register user with email more than 255 characters')]
     public function test_register_user_with_email_more_than_255_characters()
@@ -82,11 +103,18 @@ class RegisterUserTest extends TestCase
 
         $response->assertStatus(422);
         $response->assertJsonValidationErrors('email');
-        $this->assertEquals('O campo e-mail deve ter no máximo 255 caracteres.', $response->json('errors.email.0'));
+        $response->assertJson([
+            'message' => 'O campo e-mail deve ter no máximo 255 caracteres.',
+            'errors' => [
+                'email' => [
+                    'O campo e-mail deve ter no máximo 255 caracteres.',
+                ]
+            ]
+        ]);
     }
 
     #[Test]
-    #[Group('register_user')]
+    #[Group('api_register_user')]
     #[Group('api')]
     #[TestDox('Try register user with password less than 6 characters')]
     public function test_register_user_with_password_less_than_6_characters()
@@ -100,11 +128,18 @@ class RegisterUserTest extends TestCase
 
         $response->assertStatus(422);
         $response->assertJsonValidationErrors('password');
-        $this->assertEquals('O campo senha deve ter no mínimo 6 caracteres.', $response->json('errors.password.0'));
+        $response->assertJson([
+            'message' => 'O campo senha deve ter no mínimo 6 caracteres.',
+            'errors' => [
+                'password' => [
+                    'O campo senha deve ter no mínimo 6 caracteres.',
+                ]
+            ]
+        ]);
     }
 
     #[Test]
-    #[Group('register_user')]
+    #[Group('api_register_user')]
     #[Group('api')]
     #[TestDox('Try register user with password more than 20 characters')]
     public function test_register_user_with_password_more_than_20_characters()
@@ -118,11 +153,18 @@ class RegisterUserTest extends TestCase
 
         $response->assertStatus(422);
         $response->assertJsonValidationErrors('password');
-        $this->assertEquals('O campo senha deve ter no máximo 20 caracteres.', $response->json('errors.password.0'));
+        $response->assertJson([
+            'message' => 'O campo senha deve ter no máximo 20 caracteres.',
+            'errors' => [
+                'password' => [
+                    'O campo senha deve ter no máximo 20 caracteres.',
+                ]
+            ]
+        ]);
     }
 
     #[Test]
-    #[Group('register_user')]
+    #[Group('api_register_user')]
     #[Group('api')]
     #[TestDox('Try register user with password confirmation mismatch')]
     public function test_register_user_with_password_confirmation_mismatch()
@@ -136,11 +178,18 @@ class RegisterUserTest extends TestCase
 
         $response->assertStatus(422);
         $response->assertJsonValidationErrors('password');
-        $this->assertEquals('O campo senha não confere com a confirmação.', $response->json('errors.password.0'));
+        $response->assertJson([
+            'message' => 'O campo senha não confere com a confirmação.',
+            'errors' => [
+                'password' => [
+                    'O campo senha não confere com a confirmação.',
+                ]
+            ]
+        ]);
     }
 
     #[Test]
-    #[Group('register_user')]
+    #[Group('api_register_user')]
     #[Group('api')]
     #[TestDox('Try register user with duplicate email')]
     public function test_register_user_with_duplicate_email()
@@ -156,11 +205,18 @@ class RegisterUserTest extends TestCase
 
         $response->assertStatus(422);
         $response->assertJsonValidationErrors('email');
-        $this->assertEquals('O campo e-mail já está em uso.', $response->json('errors.email.0'));
+        $response->assertJson([
+            'message' => 'O campo e-mail já está em uso.',
+            'errors' => [
+                'email' => [
+                    'O campo e-mail já está em uso.',
+                ]
+            ]
+        ]);
     }
 
     #[Test]
-    #[Group('register_user')]
+    #[Group('api_register_user')]
     #[Group('api')]
     #[TestDox('Successfully register user with valid data')]
     public function test_successfully_register_user_with_valid_data()
