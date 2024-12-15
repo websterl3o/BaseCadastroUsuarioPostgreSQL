@@ -7,7 +7,7 @@
             "request": "launch",
             "port": 9003, // Ensure this matches the Xdebug port
             "pathMappings": {
-                "/var/www": "${workspaceFolder}"
+                "/var/www": "${workspaceFolder}/src"
             }
         }
     ]
