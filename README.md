@@ -2,7 +2,7 @@
 
 ## Descrição do Projeto
 
-Projeto PHP com Laravel para construção de um ambiente de cadastro de usuário usando com banco de dados PostgreSQL.
+Projeto BaseCadastroUsuarioPostgreSQL é uma aplicação web que permite o cadastro de usuários e login de usuários. O projeto foi desenvolvido utilizando o framework Laravel e banco de dados PostgreSQL. O projeto foi desenvolvido para atender o desafio proposto pela empresa [Firts decision](https://www.firstdecision.com.br/).
 
 ## Regras:
 - Crie uma página de registro de usuário com os seguintes campos:
@@ -29,7 +29,7 @@ Projeto PHP com Laravel para construção de um ambiente de cadastro de usuário
     <img src="https://img.shields.io/badge/-Vite-%23fff?style=for-the-badge&logo=vite&logoColor=4FC08D" target="_blank">
 </div>
 
-## Configuração do Ambiente
+## Configuração do Ambiente Docker
 1. Clone o repositório do projeto
 ```shellScript
 git clone git@github.com:websterl3o/BaseCadastroUsuarioPostgreSQL.git
