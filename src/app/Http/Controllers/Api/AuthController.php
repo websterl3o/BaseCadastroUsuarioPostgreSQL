@@ -41,6 +41,7 @@ class AuthController
 
         return response()->json([
             'message' => 'User registered.',
+            'user' => $user
         ], Response::HTTP_CREATED);
     }
 
