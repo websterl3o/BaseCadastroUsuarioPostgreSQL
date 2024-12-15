@@ -11,7 +11,7 @@ services:
             - ./docker/php/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
         ports:
             - "5177:5177" # Porta do Vite
-            - "9000:9003" # Porta do Xdebug
+            - "9003:9003" # Porta do Xdebug
         networks:
             - bcuPostgres
         depends_on:
