@@ -2,7 +2,7 @@
 
 ## Descrição do Projeto
 
-Projeto BaseCadastroUsuarioPostgreSQL é uma aplicação web que permite o cadastro de usuários e login de usuários. O projeto foi desenvolvido utilizando o framework Laravel e banco de dados PostgreSQL. O projeto foi desenvolvido para atender o desafio proposto pela empresa [Firts decision](https://www.firstdecision.com.br/).
+Projeto BaseCadastroUsuarioPostgreSQL é uma aplicação web que permite o cadastro de usuários e login de usuários. O projeto foi desenvolvido utilizando o framework Laravel e banco de dados PostgreSQL. O projeto foi desenvolvido para atender o desafio proposto pela empresa [First decision](https://www.firstdecision.com.br/).
 
 ## Regras:
 - Crie uma página de registro de usuário com os seguintes campos:
